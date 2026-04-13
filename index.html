@@ -1,0 +1,1039 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KP Agency — Сайти, SMM, Дизайн</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --navy: #0a0f1e;
+        --navy2: #0d1428;
+        --navy3: #111c35;
+        --blue: #1a2a5e;
+        --accent: #2d6be4;
+        --accent2: #4a8fff;
+        --text: #e8edf5;
+        --muted: #7a8aaa;
+        --border: rgba(45, 107, 228, 0.2);
+        --card: rgba(17, 28, 53, 0.8);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: var(--navy);
+        color: var(--text);
+        font-family: "Inter", sans-serif;
+        font-weight: 300;
+        overflow-x: hidden;
+      }
+
+      /* NOISE OVERLAY */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+        pointer-events: none;
+        z-index: 0;
+        opacity: 0.4;
+      }
+
+      /* GLOW BLOBS */
+      .blob {
+        position: fixed;
+        border-radius: 50%;
+        filter: blur(120px);
+        pointer-events: none;
+        z-index: 0;
+      }
+      .blob-1 {
+        width: 600px;
+        height: 600px;
+        background: rgba(45, 107, 228, 0.12);
+        top: -200px;
+        right: -100px;
+      }
+      .blob-2 {
+        width: 400px;
+        height: 400px;
+        background: rgba(74, 143, 255, 0.08);
+        bottom: 20%;
+        left: -150px;
+      }
+
+      /* NAV */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        padding: 20px 60px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: rgba(10, 15, 30, 0.7);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .logo {
+        font-family: "Syne", sans-serif;
+        font-weight: 800;
+        font-size: 1.5rem;
+        letter-spacing: -0.02em;
+        color: var(--text);
+        text-decoration: none;
+      }
+      .logo span {
+        color: var(--accent2);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 36px;
+        list-style: none;
+      }
+      .nav-links a {
+        color: var(--muted);
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 400;
+        transition: color 0.2s;
+        letter-spacing: 0.02em;
+      }
+      .nav-links a:hover {
+        color: var(--text);
+      }
+
+      .nav-cta {
+        background: var(--accent);
+        color: #fff !important;
+        padding: 10px 24px;
+        border-radius: 6px;
+        transition: background 0.2s !important;
+      }
+      .nav-cta:hover {
+        background: var(--accent2) !important;
+        color: #fff !important;
+      }
+
+      /* SECTIONS */
+      section {
+        position: relative;
+        z-index: 1;
+      }
+
+      /* HERO */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding: 120px 60px 80px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .hero-content {
+        max-width: 700px;
+      }
+
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(45, 107, 228, 0.12);
+        border: 1px solid var(--border);
+        padding: 8px 16px;
+        border-radius: 100px;
+        font-size: 0.8rem;
+        color: var(--accent2);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-bottom: 32px;
+        animation: fadeUp 0.6s ease both;
+      }
+
+      .hero-badge::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        background: var(--accent2);
+        border-radius: 50%;
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.5;
+          transform: scale(0.8);
+        }
+      }
+
+      h1 {
+        font-family: "Syne", sans-serif;
+        font-weight: 800;
+        font-size: clamp(2.8rem, 6vw, 5rem);
+        line-height: 1.05;
+        letter-spacing: -0.03em;
+        margin-bottom: 24px;
+        animation: fadeUp 0.6s 0.1s ease both;
+      }
+
+      h1 .line-accent {
+        color: var(--accent2);
+      }
+
+      .hero-desc {
+        font-size: 1.15rem;
+        color: var(--muted);
+        line-height: 1.7;
+        max-width: 520px;
+        margin-bottom: 44px;
+        animation: fadeUp 0.6s 0.2s ease both;
+      }
+
+      .hero-btns {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+        animation: fadeUp 0.6s 0.3s ease both;
+      }
+
+      .btn-primary {
+        background: var(--accent);
+        color: #fff;
+        padding: 16px 36px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 1rem;
+        transition:
+          background 0.2s,
+          transform 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .btn-primary:hover {
+        background: var(--accent2);
+        transform: translateY(-2px);
+      }
+
+      .btn-secondary {
+        background: transparent;
+        color: var(--text);
+        padding: 16px 36px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 400;
+        font-size: 1rem;
+        border: 1px solid var(--border);
+        transition:
+          border-color 0.2s,
+          transform 0.2s;
+      }
+      .btn-secondary:hover {
+        border-color: var(--accent2);
+        transform: translateY(-2px);
+      }
+
+      .hero-stats {
+        display: flex;
+        gap: 48px;
+        margin-top: 64px;
+        padding-top: 48px;
+        border-top: 1px solid var(--border);
+        animation: fadeUp 0.6s 0.4s ease both;
+      }
+      .stat-num {
+        font-family: "Syne", sans-serif;
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--accent2);
+      }
+      .stat-label {
+        font-size: 0.85rem;
+        color: var(--muted);
+        margin-top: 4px;
+      }
+
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(24px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* SECTION COMMON */
+      .section-wrap {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 100px 60px;
+      }
+
+      .section-label {
+        font-size: 0.75rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--accent2);
+        margin-bottom: 16px;
+        font-weight: 500;
+      }
+
+      h2 {
+        font-family: "Syne", sans-serif;
+        font-weight: 700;
+        font-size: clamp(2rem, 4vw, 3rem);
+        letter-spacing: -0.02em;
+        line-height: 1.1;
+        margin-bottom: 16px;
+      }
+
+      .section-sub {
+        color: var(--muted);
+        font-size: 1.05rem;
+        line-height: 1.7;
+        max-width: 560px;
+        margin-bottom: 60px;
+      }
+
+      /* SERVICES */
+      .services-bg {
+        background: var(--navy2);
+      }
+
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+
+      .service-card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 36px 32px;
+        transition:
+          border-color 0.3s,
+          transform 0.3s;
+        backdrop-filter: blur(10px);
+      }
+      .service-card:hover {
+        border-color: var(--accent);
+        transform: translateY(-4px);
+      }
+
+      .service-icon {
+        width: 52px;
+        height: 52px;
+        background: rgba(45, 107, 228, 0.15);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        margin-bottom: 24px;
+        border: 1px solid var(--border);
+      }
+
+      .service-card h3 {
+        font-family: "Syne", sans-serif;
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin-bottom: 12px;
+        letter-spacing: -0.01em;
+      }
+
+      .service-card p {
+        color: var(--muted);
+        font-size: 0.95rem;
+        line-height: 1.65;
+        margin-bottom: 24px;
+      }
+
+      .service-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .service-list li {
+        font-size: 0.85rem;
+        color: var(--muted);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .service-list li::before {
+        content: "";
+        width: 4px;
+        height: 4px;
+        background: var(--accent2);
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+
+      /* HOW IT WORKS */
+      .steps {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0;
+        position: relative;
+        margin-top: 20px;
+      }
+
+      .steps::before {
+        content: "";
+        position: absolute;
+        top: 28px;
+        left: 10%;
+        right: 10%;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--accent),
+          transparent
+        );
+      }
+
+      .step {
+        text-align: center;
+        padding: 0 20px;
+      }
+
+      .step-num {
+        width: 56px;
+        height: 56px;
+        background: var(--navy3);
+        border: 1px solid var(--border);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Syne", sans-serif;
+        font-weight: 700;
+        font-size: 1rem;
+        color: var(--accent2);
+        margin: 0 auto 20px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .step h4 {
+        font-family: "Syne", sans-serif;
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+      .step p {
+        font-size: 0.88rem;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      /* WHY US */
+      .why-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+      }
+
+      .why-card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 32px;
+        display: flex;
+        gap: 20px;
+        align-items: flex-start;
+        transition: border-color 0.3s;
+      }
+      .why-card:hover {
+        border-color: var(--accent);
+      }
+
+      .why-icon {
+        font-size: 1.8rem;
+        flex-shrink: 0;
+        width: 48px;
+        text-align: center;
+      }
+
+      .why-card h4 {
+        font-family: "Syne", sans-serif;
+        font-size: 1.05rem;
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+      .why-card p {
+        font-size: 0.9rem;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      /* CONTACT */
+      .contact-bg {
+        background: var(--navy2);
+      }
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1.2fr;
+        gap: 64px;
+        align-items: start;
+      }
+
+      .contact-info h2 {
+        margin-bottom: 16px;
+      }
+
+      .contact-channels {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        margin-top: 40px;
+      }
+
+      .channel {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        color: var(--text);
+        text-decoration: none;
+        padding: 16px 20px;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        transition:
+          border-color 0.2s,
+          transform 0.2s;
+        font-size: 0.95rem;
+      }
+      .channel:hover {
+        border-color: var(--accent2);
+        transform: translateX(4px);
+      }
+      .channel-icon {
+        font-size: 1.3rem;
+        width: 32px;
+        text-align: center;
+      }
+      .channel-label {
+        color: var(--muted);
+        font-size: 0.75rem;
+        display: block;
+        margin-top: 2px;
+      }
+
+      /* FORM */
+      .contact-form {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 40px;
+        backdrop-filter: blur(10px);
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      label {
+        display: block;
+        font-size: 0.85rem;
+        color: var(--muted);
+        margin-bottom: 8px;
+        font-weight: 400;
+        letter-spacing: 0.02em;
+      }
+
+      input,
+      textarea,
+      select {
+        width: 100%;
+        background: rgba(10, 15, 30, 0.6);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 14px 16px;
+        color: var(--text);
+        font-family: "Inter", sans-serif;
+        font-size: 0.95rem;
+        font-weight: 300;
+        transition: border-color 0.2s;
+        outline: none;
+        -webkit-appearance: none;
+      }
+      input:focus,
+      textarea:focus,
+      select:focus {
+        border-color: var(--accent);
+      }
+      textarea {
+        resize: vertical;
+        min-height: 120px;
+      }
+      select option {
+        background: var(--navy2);
+      }
+
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+
+      .submit-btn {
+        width: 100%;
+        background: var(--accent);
+        color: #fff;
+        border: none;
+        padding: 16px;
+        border-radius: 8px;
+        font-family: "Syne", sans-serif;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition:
+          background 0.2s,
+          transform 0.2s;
+        margin-top: 8px;
+        letter-spacing: 0.02em;
+      }
+      .submit-btn:hover {
+        background: var(--accent2);
+        transform: translateY(-2px);
+      }
+
+      /* FOOTER */
+      footer {
+        border-top: 1px solid var(--border);
+        padding: 32px 60px;
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+
+      .footer-links {
+        display: flex;
+        gap: 24px;
+      }
+      .footer-links a {
+        color: var(--muted);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .footer-links a:hover {
+        color: var(--text);
+      }
+
+      /* MOBILE */
+      @media (max-width: 900px) {
+        nav {
+          padding: 16px 24px;
+        }
+        .nav-links {
+          display: none;
+        }
+        .hero {
+          padding: 100px 24px 60px;
+        }
+        .hero-stats {
+          gap: 28px;
+          flex-wrap: wrap;
+        }
+        .section-wrap {
+          padding: 70px 24px;
+        }
+        .services-grid {
+          grid-template-columns: 1fr;
+        }
+        .steps {
+          grid-template-columns: 1fr 1fr;
+        }
+        .steps::before {
+          display: none;
+        }
+        .why-grid {
+          grid-template-columns: 1fr;
+        }
+        .contact-grid {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+        footer {
+          flex-direction: column;
+          gap: 16px;
+          text-align: center;
+          padding: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <!-- NAV -->
+    <nav>
+      <a href="#" class="logo">KP<span>.</span>Agency</a>
+      <ul class="nav-links">
+        <li><a href="#services">Послуги</a></li>
+        <li><a href="#how">Як ми працюємо</a></li>
+        <li><a href="#why">Чому ми</a></li>
+        <li><a href="#contact" class="nav-cta">Зв'язатись</a></li>
+      </ul>
+    </nav>
+
+    <!-- HERO -->
+    <div style="position: relative; z-index: 1">
+      <div class="hero">
+        <div class="hero-content">
+          <div class="hero-badge">Цифрова агенція · Славськ</div>
+          <h1>
+            Ваш бізнес —<br /><span class="line-accent">в інтернеті.</span
+            ><br />Просто і зрозуміло.
+          </h1>
+          <p class="hero-desc">
+            Ми створюємо сайти, ведемо соцмережі та розробляємо дизайн. Ви
+            займаєтесь бізнесом — ми робимо все інше.
+          </p>
+          <div class="hero-btns">
+            <a href="#contact" class="btn-primary">Замовити консультацію →</a>
+            <a href="#services" class="btn-secondary">Наші послуги</a>
+          </div>
+          <div class="hero-stats">
+            <div>
+              <div class="stat-num">3</div>
+              <div class="stat-label">Напрямки роботи</div>
+            </div>
+            <div>
+              <div class="stat-num">100%</div>
+              <div class="stat-label">Під ключ</div>
+            </div>
+            <div>
+              <div class="stat-num">2</div>
+              <div class="stat-label">Досвідчені фахівці</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SERVICES -->
+    <div class="services-bg" id="services">
+      <div class="section-wrap">
+        <div class="section-label">Що ми робимо</div>
+        <h2>Наші послуги</h2>
+        <p class="section-sub">
+          Все що потрібно вашому бізнесу в інтернеті — в одному місці. Жодного
+          зайвого клопоту.
+        </p>
+
+        <div class="services-grid">
+          <!-- Card 1 -->
+          <div class="service-card">
+            <div class="service-icon">🌐</div>
+            <h3>Розробка сайтів</h3>
+            <p>
+              Створюємо сайти з нуля: від дизайну до запуску. Після здачі — сайт
+              ваш і повністю готовий до роботи.
+            </p>
+            <ul class="service-list">
+              <li>Сайт-візитка або лендінг</li>
+              <li>Інтернет-магазин</li>
+              <li>Корпоративний сайт</li>
+              <li>Підключення домену та хостингу</li>
+              <li>Адаптація під телефон і планшет</li>
+            </ul>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="service-card">
+            <div class="service-icon">📱</div>
+            <h3>SMM — соцмережі</h3>
+            <p>
+              Ведемо ваш Instagram, Facebook або TikTok. Публікуємо контент,
+              відповідаємо на коментарі, залучаємо нових клієнтів.
+            </p>
+            <ul class="service-list">
+              <li>Розробка стратегії просування</li>
+              <li>Написання текстів і постів</li>
+              <li>Оформлення профілю</li>
+              <li>Таргетована реклама</li>
+              <li>Щомісячні звіти результатів</li>
+            </ul>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="service-card">
+            <div class="service-icon">🎨</div>
+            <h3>Дизайн</h3>
+            <p>
+              Робимо так, щоб ваш бренд виглядав професійно і запам'ятовувався.
+              Від логотипу до банерів і поліграфії.
+            </p>
+            <ul class="service-list">
+              <li>Логотип та фірмовий стиль</li>
+              <li>UI/UX дизайн інтерфейсів</li>
+              <li>Банери та сторіс для соцмереж</li>
+              <li>Брендинг бізнесу</li>
+              <li>Друкована продукція</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HOW IT WORKS -->
+    <div id="how">
+      <div class="section-wrap">
+        <div class="section-label">Процес роботи</div>
+        <h2>Як ми працюємо</h2>
+        <p class="section-sub">
+          Все просто і прозоро. Ви завжди знаєте на якому етапі знаходиться ваш
+          проєкт.
+        </p>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">01</div>
+            <h4>Консультація</h4>
+            <p>
+              Обговорюємо ваш проєкт, цілі і бажання. Безкоштовно і без
+              зобов'язань.
+            </p>
+          </div>
+          <div class="step">
+            <div class="step-num">02</div>
+            <h4>Пропозиція</h4>
+            <p>
+              Надаємо детальний план і вартість. Погоджуємо кожен крок з вами.
+            </p>
+          </div>
+          <div class="step">
+            <div class="step-num">03</div>
+            <h4>Розробка</h4>
+            <p>
+              Беремось за роботу. Ви бачите прогрес і вносите правки в процесі.
+            </p>
+          </div>
+          <div class="step">
+            <div class="step-num">04</div>
+            <h4>Здача</h4>
+            <p>
+              Запускаємо готовий результат. Підтримуємо після здачі проєкту.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WHY US -->
+    <div class="services-bg" id="why">
+      <div class="section-wrap">
+        <div class="section-label">Наші переваги</div>
+        <h2>Чому обирають нас</h2>
+        <p class="section-sub">
+          Ми невелика команда — але це наша перевага. Кожен клієнт отримує
+          максимум уваги.
+        </p>
+
+        <div class="why-grid">
+          <div class="why-card">
+            <div class="why-icon">🗣️</div>
+            <div>
+              <h4>Пояснюємо простою мовою</h4>
+              <p>
+                Жодного технічного жаргону. Розповідаємо все так, щоб було
+                зрозуміло навіть без досвіду в IT.
+              </p>
+            </div>
+          </div>
+          <div class="why-card">
+            <div class="why-icon">⚡</div>
+            <div>
+              <h4>Швидко і в строк</h4>
+              <p>
+                Поважаємо ваш час. Домовляємось про терміни і дотримуємось їх —
+                без відтягувань.
+              </p>
+            </div>
+          </div>
+          <div class="why-card">
+            <div class="why-icon">🤝</div>
+            <div>
+              <h4>Все під ключ</h4>
+              <p>
+                Від ідеї до запуску — беремо на себе весь процес. Вам не треба
+                шукати кількох різних виконавців.
+              </p>
+            </div>
+          </div>
+          <div class="why-card">
+            <div class="why-icon">📍</div>
+            <div>
+              <h4>Місцева команда</h4>
+              <p>
+                Ми зі Славська. Розуміємо місцевий ринок і завжди на зв'язку в
+                зручний для вас час.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="contact-bg" id="contact">
+      <div class="section-wrap">
+        <div class="contact-grid">
+          <div class="contact-info">
+            <div class="section-label">Зв'язок</div>
+            <h2>Починаємо<br />співпрацю?</h2>
+            <p class="section-sub" style="margin-bottom: 0">
+              Напишіть нам — відповімо протягом кількох годин і безкоштовно
+              проконсультуємо.
+            </p>
+
+            <div class="contact-channels">
+              <a href="tel:+380XXXXXXXXX" class="channel">
+                <span class="channel-icon">📞</span>
+                <div>
+                  <span>+380 XX XXX XX XX</span>
+                  <span class="channel-label">Номер телефону</span>
+                </div>
+              </a>
+              <a href="mailto:hello@kpagency.com.ua" class="channel">
+                <span class="channel-icon">✉️</span>
+                <div>
+                  <span>hello@kpagency.com.ua</span>
+                  <span class="channel-label">Електронна пошта</span>
+                </div>
+              </a>
+              <a
+                href="https://instagram.com/kpagency"
+                target="_blank"
+                class="channel"
+              >
+                <span class="channel-icon">📸</span>
+                <div>
+                  <span>@kpagency</span>
+                  <span class="channel-label">Instagram</span>
+                </div>
+              </a>
+              <a href="https://t.me/kpagency" target="_blank" class="channel">
+                <span class="channel-icon">✈️</span>
+                <div>
+                  <span>@kpagency</span>
+                  <span class="channel-label">Telegram</span>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="contact-form">
+            <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="name">Ваше ім'я</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Іван Іваненко"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="phone">Телефон</label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    placeholder="+380 XX XXX XX XX"
+                  />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="email">Електронна пошта</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="your@email.com"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="service">Яка послуга вас цікавить?</label>
+                <select id="service" name="service">
+                  <option value="">Оберіть послугу...</option>
+                  <option value="website">Розробка сайту</option>
+                  <option value="smm">SMM — ведення соцмереж</option>
+                  <option value="design">Дизайн і брендинг</option>
+                  <option value="all">Все разом</option>
+                  <option value="other">Інше / не знаю</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="message">Розкажіть про ваш проєкт</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  placeholder="Що потрібно зробити? Який бізнес? Будь-які деталі..."
+                ></textarea>
+              </div>
+              <button type="submit" class="submit-btn">
+                Надіслати заявку →
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <span>© 2025 KP Agency · Славськ, Україна</span>
+      <div class="footer-links">
+        <a href="#services">Послуги</a>
+        <a href="#contact">Контакти</a>
+        <a href="https://instagram.com/kpagency" target="_blank">Instagram</a>
+        <a href="https://t.me/kpagency" target="_blank">Telegram</a>
+      </div>
+    </footer>
+  </body>
+</html>
