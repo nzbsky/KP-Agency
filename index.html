@@ -551,7 +551,6 @@
         margin-top: 2px;
       }
 
-      /* FORM */
       .contact-form {
         background: var(--card);
         border: 1px solid var(--border);
@@ -630,7 +629,6 @@
         transform: translateY(-2px);
       }
 
-      /* FOOTER */
       footer {
         border-top: 1px solid var(--border);
         padding: 32px 60px;
@@ -656,7 +654,253 @@
         color: var(--text);
       }
 
-      /* MOBILE */
+      @keyframes floatBlob1 {
+        0%,
+        100% {
+          transform: translate(0, 0) scale(1);
+        }
+        33% {
+          transform: translate(40px, -60px) scale(1.08);
+        }
+        66% {
+          transform: translate(-30px, 30px) scale(0.95);
+        }
+      }
+      @keyframes floatBlob2 {
+        0%,
+        100% {
+          transform: translate(0, 0) scale(1);
+        }
+        33% {
+          transform: translate(-50px, 40px) scale(1.05);
+        }
+        66% {
+          transform: translate(30px, -50px) scale(0.92);
+        }
+      }
+      .blob-1 {
+        animation: floatBlob1 18s ease-in-out infinite;
+      }
+      .blob-2 {
+        animation: floatBlob2 22s ease-in-out infinite;
+      }
+
+      /* Scroll reveal */
+      .reveal {
+        opacity: 0;
+        transform: translateY(32px);
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s ease;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .reveal-left {
+        opacity: 0;
+        transform: translateX(-32px);
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s ease;
+      }
+      .reveal-left.visible {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .reveal-delay-1 {
+        transition-delay: 0.1s;
+      }
+      .reveal-delay-2 {
+        transition-delay: 0.2s;
+      }
+      .reveal-delay-3 {
+        transition-delay: 0.3s;
+      }
+      .reveal-delay-4 {
+        transition-delay: 0.4s;
+      }
+
+      .btn-primary {
+        position: relative;
+        overflow: hidden;
+      }
+      .btn-primary::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 60%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.18),
+          transparent
+        );
+        transform: skewX(-20deg);
+        animation: shimmer 3s 1.5s infinite;
+      }
+      @keyframes shimmer {
+        0% {
+          left: -100%;
+        }
+        60%,
+        100% {
+          left: 160%;
+        }
+      }
+
+      .step-num {
+        transition:
+          background 0.3s,
+          border-color 0.3s,
+          transform 0.3s,
+          box-shadow 0.3s;
+      }
+      .step:hover .step-num {
+        background: var(--accent);
+        border-color: var(--accent2);
+        transform: scale(1.15);
+        box-shadow: 0 0 24px rgba(45, 107, 228, 0.5);
+      }
+
+      .nav-links a:not(.nav-cta) {
+        position: relative;
+      }
+      .nav-links a:not(.nav-cta)::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -3px;
+        width: 0;
+        height: 1px;
+        background: var(--accent2);
+        transition: width 0.25s ease;
+      }
+      .nav-links a:not(.nav-cta):hover::after {
+        width: 100%;
+      }
+
+      .service-card {
+        transition:
+          border-color 0.3s,
+          transform 0.3s,
+          box-shadow 0.3s;
+      }
+      .service-card:hover {
+        border-color: var(--accent);
+        transform: translateY(-6px);
+        box-shadow: 0 16px 48px rgba(45, 107, 228, 0.15);
+      }
+
+      .why-card {
+        transition:
+          border-color 0.3s,
+          transform 0.3s,
+          box-shadow 0.3s;
+      }
+      .why-card:hover {
+        border-color: var(--accent);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 32px rgba(45, 107, 228, 0.12);
+      }
+
+      .typing-cursor {
+        display: inline-block;
+        width: 3px;
+        background: var(--accent2);
+        margin-left: 2px;
+        vertical-align: middle;
+        animation: blink 0.75s step-end infinite;
+      }
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
+      }
+
+      /* MODAL */
+      .modal-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(5, 8, 20, 0.85);
+        backdrop-filter: blur(8px);
+        z-index: 999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+      }
+      .modal-overlay.active {
+        opacity: 1;
+        pointer-events: all;
+      }
+      .modal {
+        background: var(--navy3);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 48px 40px;
+        max-width: 480px;
+        width: 100%;
+        text-align: center;
+        transform: translateY(20px) scale(0.97);
+        transition: transform 0.3s ease;
+        position: relative;
+      }
+      .modal-overlay.active .modal {
+        transform: translateY(0) scale(1);
+      }
+      .modal-icon {
+        font-size: 3rem;
+        margin-bottom: 20px;
+        display: block;
+      }
+      .modal h3 {
+        font-family: "Syne", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 12px;
+        letter-spacing: -0.02em;
+      }
+      .modal p {
+        color: var(--muted);
+        font-size: 0.98rem;
+        line-height: 1.65;
+        margin-bottom: 28px;
+      }
+      .modal p strong {
+        color: var(--accent2);
+        font-weight: 500;
+      }
+      .modal-close {
+        background: var(--accent);
+        color: #fff;
+        border: none;
+        padding: 14px 36px;
+        border-radius: 8px;
+        font-family: "Syne", sans-serif;
+        font-size: 0.95rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition:
+          background 0.2s,
+          transform 0.2s;
+        letter-spacing: 0.02em;
+      }
+      .modal-close:hover {
+        background: var(--accent2);
+        transform: translateY(-2px);
+      }
+
       @media (max-width: 900px) {
         nav {
           padding: 16px 24px;
@@ -701,12 +945,14 @@
         }
       }
     </style>
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   </head>
   <body>
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
 
-    <!-- NAV -->
     <nav>
       <a href="#" class="logo">KP<span>.</span>Agency</a>
       <ul class="nav-links">
@@ -717,7 +963,6 @@
       </ul>
     </nav>
 
-    <!-- HERO -->
     <div style="position: relative; z-index: 1">
       <div class="hero">
         <div class="hero-content">
@@ -736,15 +981,15 @@
           </div>
           <div class="hero-stats">
             <div>
-              <div class="stat-num">3</div>
+              <div class="stat-num" data-count="3">3</div>
               <div class="stat-label">Напрямки роботи</div>
             </div>
             <div>
-              <div class="stat-num">100%</div>
+              <div class="stat-num" data-count="100" data-suffix="%">100%</div>
               <div class="stat-label">Під ключ</div>
             </div>
             <div>
-              <div class="stat-num">2</div>
+              <div class="stat-num" data-count="2">2</div>
               <div class="stat-label">Досвідчені фахівці</div>
             </div>
           </div>
@@ -752,19 +997,17 @@
       </div>
     </div>
 
-    <!-- SERVICES -->
     <div class="services-bg" id="services">
       <div class="section-wrap">
-        <div class="section-label">Що ми робимо</div>
-        <h2>Наші послуги</h2>
-        <p class="section-sub">
+        <div class="section-label reveal">Що ми робимо</div>
+        <h2 class="reveal reveal-delay-1">Наші послуги</h2>
+        <p class="section-sub reveal reveal-delay-2">
           Все що потрібно вашому бізнесу в інтернеті — в одному місці. Жодного
           зайвого клопоту.
         </p>
 
         <div class="services-grid">
-          <!-- Card 1 -->
-          <div class="service-card">
+          <div class="service-card reveal reveal-delay-1">
             <div class="service-icon">🌐</div>
             <h3>Розробка сайтів</h3>
             <p>
@@ -780,8 +1023,7 @@
             </ul>
           </div>
 
-          <!-- Card 2 -->
-          <div class="service-card">
+          <div class="service-card reveal reveal-delay-2">
             <div class="service-icon">📱</div>
             <h3>SMM — соцмережі</h3>
             <p>
@@ -797,8 +1039,7 @@
             </ul>
           </div>
 
-          <!-- Card 3 -->
-          <div class="service-card">
+          <div class="service-card reveal reveal-delay-3">
             <div class="service-icon">🎨</div>
             <h3>Дизайн</h3>
             <p>
@@ -817,18 +1058,17 @@
       </div>
     </div>
 
-    <!-- HOW IT WORKS -->
     <div id="how">
       <div class="section-wrap">
-        <div class="section-label">Процес роботи</div>
-        <h2>Як ми працюємо</h2>
-        <p class="section-sub">
+        <div class="section-label reveal">Процес роботи</div>
+        <h2 class="reveal reveal-delay-1">Як ми працюємо</h2>
+        <p class="section-sub reveal reveal-delay-2">
           Все просто і прозоро. Ви завжди знаєте на якому етапі знаходиться ваш
           проєкт.
         </p>
 
         <div class="steps">
-          <div class="step">
+          <div class="step reveal reveal-delay-1">
             <div class="step-num">01</div>
             <h4>Консультація</h4>
             <p>
@@ -836,21 +1076,21 @@
               зобов'язань.
             </p>
           </div>
-          <div class="step">
+          <div class="step reveal reveal-delay-2">
             <div class="step-num">02</div>
             <h4>Пропозиція</h4>
             <p>
               Надаємо детальний план і вартість. Погоджуємо кожен крок з вами.
             </p>
           </div>
-          <div class="step">
+          <div class="step reveal reveal-delay-3">
             <div class="step-num">03</div>
             <h4>Розробка</h4>
             <p>
               Беремось за роботу. Ви бачите прогрес і вносите правки в процесі.
             </p>
           </div>
-          <div class="step">
+          <div class="step reveal reveal-delay-4">
             <div class="step-num">04</div>
             <h4>Здача</h4>
             <p>
@@ -861,18 +1101,17 @@
       </div>
     </div>
 
-    <!-- WHY US -->
     <div class="services-bg" id="why">
       <div class="section-wrap">
-        <div class="section-label">Наші переваги</div>
-        <h2>Чому обирають нас</h2>
-        <p class="section-sub">
+        <div class="section-label reveal">Наші переваги</div>
+        <h2 class="reveal reveal-delay-1">Чому обирають нас</h2>
+        <p class="section-sub reveal reveal-delay-2">
           Ми невелика команда — але це наша перевага. Кожен клієнт отримує
           максимум уваги.
         </p>
 
         <div class="why-grid">
-          <div class="why-card">
+          <div class="why-card reveal reveal-delay-1">
             <div class="why-icon">🗣️</div>
             <div>
               <h4>Пояснюємо простою мовою</h4>
@@ -882,7 +1121,7 @@
               </p>
             </div>
           </div>
-          <div class="why-card">
+          <div class="why-card reveal reveal-delay-2">
             <div class="why-icon">⚡</div>
             <div>
               <h4>Швидко і в строк</h4>
@@ -892,7 +1131,7 @@
               </p>
             </div>
           </div>
-          <div class="why-card">
+          <div class="why-card reveal reveal-delay-3">
             <div class="why-icon">🤝</div>
             <div>
               <h4>Все під ключ</h4>
@@ -902,7 +1141,7 @@
               </p>
             </div>
           </div>
-          <div class="why-card">
+          <div class="why-card reveal reveal-delay-4">
             <div class="why-icon">📍</div>
             <div>
               <h4>Місцева команда</h4>
@@ -916,14 +1155,18 @@
       </div>
     </div>
 
-    <!-- CONTACT -->
     <div class="contact-bg" id="contact">
       <div class="section-wrap">
         <div class="contact-grid">
           <div class="contact-info">
-            <div class="section-label">Зв'язок</div>
-            <h2>Починаємо<br />співпрацю?</h2>
-            <p class="section-sub" style="margin-bottom: 0">
+            <div class="section-label reveal-left">Зв'язок</div>
+            <h2 class="reveal-left reveal-delay-1">
+              Починаємо<br />співпрацю?
+            </h2>
+            <p
+              class="section-sub reveal-left reveal-delay-2"
+              style="margin-bottom: 0"
+            >
               Напишіть нам — відповімо протягом кількох годин і безкоштовно
               проконсультуємо.
             </p>
@@ -936,10 +1179,20 @@
                   <span class="channel-label">Номер телефону</span>
                 </div>
               </a>
-              <a href="mailto:hello@kpagency.com.ua" class="channel">
+              <a href="mail:info@kp-agency.site" class="channel">
                 <span class="channel-icon">✉️</span>
                 <div>
-                  <span>hello@kpagency.com.ua</span>
+                  <span
+                    ><span
+                      class="__cf_email__"
+                      data-cfemail="info@kp-agency.site"
+                      ><span
+                        class="__cf_email__"
+                        data-cfemail="620b0c040d2209124f0305070c011b4c110b1607"
+                        >info@kp-agency.site</span
+                      ></span
+                    ></span
+                  >
                   <span class="channel-label">Електронна пошта</span>
                 </div>
               </a>
@@ -965,7 +1218,11 @@
           </div>
 
           <div class="contact-form">
-            <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+            <form
+              id="contactForm"
+              action="https://formspree.io/f/xojyqjvz"
+              method="POST"
+            >
               <div class="form-row">
                 <div class="form-group">
                   <label for="name">Ваше ім'я</label>
@@ -993,7 +1250,7 @@
                   type="email"
                   id="email"
                   name="email"
-                  placeholder="your@email.com"
+                  placeholder="info@kp-agency.site"
                   required
                 />
               </div>
@@ -1025,15 +1282,188 @@
       </div>
     </div>
 
-    <!-- FOOTER -->
+    <!-- MODAL -->
+    <div class="modal-overlay" id="successModal">
+      <div class="modal">
+        <span class="modal-icon" id="modalIcon">✅</span>
+        <h3 id="modalTitle">Заявку отримано!</h3>
+        <p id="modalText"></p>
+        <button class="modal-close" onclick="closeModal()">Зрозуміло</button>
+      </div>
+    </div>
+
     <footer>
       <span>© 2025 KP Agency · Славськ, Україна</span>
       <div class="footer-links">
         <a href="#services">Послуги</a>
         <a href="#contact">Контакти</a>
         <a href="https://instagram.com/kpagency" target="_blank">Instagram</a>
-        <a href="https://t.me/kpagency" target="_blank">Telegram</a>
       </div>
     </footer>
+
+    <script
+      data-cfasync="false"
+      src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
+    ></script>
+    <script>
+      const revealEls = document.querySelectorAll(".reveal, .reveal-left");
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("visible");
+              revealObserver.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.15 },
+      );
+      revealEls.forEach((el) => revealObserver.observe(el));
+
+      function animateCounter(el) {
+        const target = parseInt(el.dataset.count);
+        const suffix = el.dataset.suffix || "";
+        const duration = 1200;
+        const step = 16;
+        const increment = target / (duration / step);
+        let current = 0;
+        const timer = setInterval(() => {
+          current += increment;
+          if (current >= target) {
+            current = target;
+            clearInterval(timer);
+          }
+          el.textContent = Math.round(current) + suffix;
+        }, step);
+      }
+
+      const counterObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              animateCounter(e.target);
+              counterObserver.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.5 },
+      );
+      document
+        .querySelectorAll("[data-count]")
+        .forEach((el) => counterObserver.observe(el));
+
+      const accentLine = document.querySelector(".line-accent");
+      if (accentLine) {
+        const text = accentLine.textContent;
+        accentLine.textContent = "";
+        const cursor = document.createElement("span");
+        cursor.className = "typing-cursor";
+        cursor.style.cssText =
+          "display:inline-block;width:3px;height:0.85em;background:var(--accent2);margin-left:2px;vertical-align:middle;animation:blink 0.75s step-end infinite;";
+        accentLine.after(cursor);
+
+        let i = 0;
+        setTimeout(() => {
+          const typer = setInterval(() => {
+            accentLine.textContent += text[i];
+            i++;
+            if (i >= text.length) {
+              clearInterval(typer);
+              setTimeout(() => cursor.remove(), 1800);
+            }
+          }, 55);
+        }, 700);
+      }
+
+      // nav scroll (stub to avoid error)
+      const nav = document.querySelector("nav");
+      if (nav) {
+        window.addEventListener("scroll", () => {
+          nav.style.background =
+            window.scrollY > 40 ? "rgba(10,15,30,0.95)" : "rgba(10,15,30,0.7)";
+        });
+      }
+    </script>
+
+    <script>
+      // ── FORM SUBMIT WITH MODAL ──────────────────────────────────────────
+      function isWorkingHours() {
+        // Ukraine time = UTC+3 (EET/EEST simplified, always +3 for Kyiv)
+        const now = new Date();
+        const utc = now.getTime() + now.getTimezoneOffset() * 60000;
+        const kyivHour = new Date(utc + 3 * 3600000).getHours();
+        return kyivHour >= 9 && kyivHour < 22;
+      }
+
+      function showModal(workingHours) {
+        const overlay = document.getElementById("successModal");
+        const icon = document.getElementById("modalIcon");
+        const title = document.getElementById("modalTitle");
+        const text = document.getElementById("modalText");
+
+        if (workingHours) {
+          icon.textContent = "✅";
+          title.textContent = "Заявку отримано!";
+          text.innerHTML =
+            "Дякуємо! Ми зв'яжемося з вами протягом <strong>15–20 хвилин</strong>.";
+        } else {
+          icon.textContent = "🌙";
+          title.textContent = "Заявку отримано!";
+          text.innerHTML =
+            "Дякуємо! Зараз позаробочий час. Ми зв'яжемося з вами <strong>в робочий час — з 9:00 до 22:00</strong>.";
+        }
+
+        overlay.classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeModal() {
+        document.getElementById("successModal").classList.remove("active");
+        document.body.style.overflow = "";
+      }
+
+      // Close on overlay click
+      document
+        .getElementById("successModal")
+        .addEventListener("click", function (e) {
+          if (e.target === this) closeModal();
+        });
+
+      // Intercept form submit
+      const contactForm = document.getElementById("contactForm");
+      if (contactForm) {
+        contactForm.addEventListener("submit", async function (e) {
+          e.preventDefault();
+
+          const btn = contactForm.querySelector(".submit-btn");
+          const origText = btn.textContent;
+          btn.textContent = "Надсилаємо...";
+          btn.disabled = true;
+
+          try {
+            const data = new FormData(contactForm);
+            const res = await fetch(contactForm.action, {
+              method: "POST",
+              body: data,
+              headers: { Accept: "application/json" },
+            });
+
+            if (res.ok) {
+              contactForm.reset();
+              showModal(isWorkingHours());
+            } else {
+              alert(
+                "Щось пішло не так. Спробуйте ще раз або напишіть нам напряму.",
+              );
+            }
+          } catch {
+            alert("Помилка з'єднання. Перевірте інтернет і спробуйте ще раз.");
+          } finally {
+            btn.textContent = origText;
+            btn.disabled = false;
+          }
+        });
+      }
+    </script>
   </body>
 </html>
